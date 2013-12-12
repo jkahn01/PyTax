@@ -1,4 +1,4 @@
-import re, csv
+import csv
 from datetime import datetime, timedelta
 
 price_file = 'prices.csv'
