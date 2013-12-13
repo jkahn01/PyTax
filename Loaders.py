@@ -4,8 +4,6 @@ from datetime import datetime, timedelta
 price_file = 'prices.csv'
 dividend_file = 'dividends.csv'
 
-non_decimal = re.compile(r'[^\d.]+')
-
 class Price: pass
 
 class Prices (dict):
@@ -17,6 +15,9 @@ class Prices (dict):
 				self._addLine(line)
 			except:
 				continue
+	
+	def closestClose(self, date):
+		return self[date] if date in self else self[min(self.keys(), key=lambda k: abs((k-date).days))]
 	
 	def _addLine (self, line):
 		date = line[0]
